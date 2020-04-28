@@ -3,6 +3,7 @@ import Card from './components/Card';
 import Nav from './components/Nav';
 import './App.css';
 import Detail from './pages/Detail';
+import MyCards from './pages/MyCard';
 import useFetch from './hooks/useFetch';
 
 export default function App(props) {
@@ -32,9 +33,9 @@ export default function App(props) {
     <>
       <Nav></Nav>
       <div className="container">
-        {JSON.stringify(myCards)}
         {cards.cards && <Detail card={cards.cards[0]} addToMyCard={addToMyCard}></Detail>}
         {cards.cards && <Detail card={cards.cards[1]} addToMyCard={addToMyCard}></Detail>}
+        {myCards.length!==0 && <MyCards myCards={myCards}/>}
         <div className="row">
           {loading && <h5>wait a sec...</h5>}
           {cards.cards && <Card cards={cards.cards}/>}
