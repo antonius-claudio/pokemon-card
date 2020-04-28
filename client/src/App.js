@@ -13,7 +13,8 @@ class App extends Component {
 
   componentDidMount() {
     console.log('DidMount ---->');
-    let url = 'https://api.pokemontcg.io/v1/cards';
+    let page = 1;
+    let url = `https://api.pokemontcg.io/v1/cards?page=${page}`;
     fetch(url, {
       method: 'GET'
     })
