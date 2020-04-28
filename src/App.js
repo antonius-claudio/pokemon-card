@@ -11,7 +11,11 @@ export default function App(props) {
   const [myCards, setMyCards] = useState([]);
 
   function addToMyCard(newData) {
-    setMyCards(myCards.concat(newData));
+    if(!myCards.find(myCard => myCard.id === newData.id)) {
+      setMyCards(myCards.concat(newData));
+    } else {
+      console.log('Card already owned');
+    }
   }
 
   // useEffect(() => {
