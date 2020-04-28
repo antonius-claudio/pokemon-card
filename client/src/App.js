@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from './components/Card';
 import Nav from './components/Nav';
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      cards: []
-    }
-  }
+export default function App(props) {
+  const [cards, setCards] = useState([]);
 
-  componentDidMount() {
-    console.log('DidMount ---->');
+  useEffect(() => {
     let page = 1;
     let url = `https://api.pokemontcg.io/v1/cards?page=${page}`;
     fetch(url, {
@@ -20,26 +14,67 @@ class App extends Component {
     })
       .then(response => response.json())
       .then((result) => {
-        this.setState({
-          cards: result.cards
-        })
+        setCards(result.cards);
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  }, []);
 
-  render() {
-    return (
-      <>
-        <Nav></Nav>
-        <div className="container">
-          <div className="row">
-            <Card cards={this.state.cards}/>
-          </div>
+  return (
+    <>
+      <Nav></Nav>
+      <div className="container">
+        <div className="row">
+          <Card cards={cards}/>
         </div>
-      </>
-    )
-  }
+      </div>
+    </>
+  );
 }
-export default App;
+
+// import React, { Component } from 'react';
+// import Card from './components/Card';
+// import Nav from './components/Nav';
+// import './App.css';
+
+// class App extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       cards: []
+//     }
+//   }
+
+//   componentDidMount() {
+//     console.log('DidMount ---->');
+//     let page = 1;
+//     let url = `https://api.pokemontcg.io/v1/cards?page=${page}`;
+//     fetch(url, {
+//       method: 'GET'
+//     })
+//       .then(response => response.json())
+//       .then((result) => {
+//         this.setState({
+//           cards: result.cards
+//         })
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   }
+
+//   render() {
+//     return (
+//       <>
+//         <Nav></Nav>
+//         <div className="container">
+//           <div className="row">
+//             <Card cards={this.state.cards}/>
+//           </div>
+//         </div>
+//       </>
+//     )
+//   }
+// }
+// export default App;
