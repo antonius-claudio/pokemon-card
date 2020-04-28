@@ -1,3 +1,6 @@
 Nav {
     background-color: #b0daa2;
 }
+.search {
+    display: flex;
+}

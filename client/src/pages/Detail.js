@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Detail.css';
 
 export default function Detail(props) {
-    let { id,
+    let {
         name, 
         imageUrlHiRes, 
         nationalPokedexNumber,
