@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Detail.css';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { useSelector, useDispatch } from 'react-redux';
 import { setMyCards } from '../store/actions/myCardsActions';
+import { Link } from 'react-router-dom';
 
 export default function Detail(props) {
     let {id} = useParams();
@@ -25,14 +26,13 @@ export default function Detail(props) {
         text
     } = {...card.card};
 
-
     function onAddMyCard(e) {
         e.preventDefault();
-        console.log('masuk tombol', card.card)
-        console.log('masuk tombol2', myCards.myCards.concat(card.card))
-        dispatch(setMyCards(myCards.myCards.concat(card.card)))
-        console.log('isi mycards setelah', myCards)
-        // props.addToMyCard(card);
+        if (!myCards.myCards.find(myCard => myCard.id === card.card.id)) {
+            dispatch(setMyCards(myCards.myCards.concat(card.card)))
+        } else {
+            console.log('Card already owned!')
+        }
     }
     return (
         <>
@@ -138,8 +138,16 @@ export default function Detail(props) {
                                         </div>
                                     </>
                                 }
-                                <div className="col s12 buttonAdd">
-                                    <a class="waves-effect waves-light btn" onClick={onAddMyCard}>
+                                <div className="col s3 offset-s6 buttonAdd">
+                                    <Link to="/" class="waves-effect waves-light btn">
+                                        <i class="material-icons right">
+                                            arrow_back
+                                        </i>
+                                        Back
+                                    </Link>
+                                </div>
+                                <div className="col s3 buttonAdd">
+                                    <a  class="waves-effect waves-light btn" onClick={onAddMyCard}>
                                         <i class="material-icons right">
                                             add
                                         </i>

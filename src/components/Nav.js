@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Nav.css';
-// import useInput from '../hooks/useInput';
 import useFetch from '../hooks/useFetch';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setCards } from '../store/actions/cardsActions';
+
 
 export default function Nav(props) {
 
-    // const { data: search, onChange: onChangeSearch, onReset: onResetSearch} = useInput('');
-    
     let [search, setSearch] = useState('');
     let [filterCards, filterSetCards , filterLoading, filterError] = useFetch(`https://api.pokemontcg.io/v1/cards?name=${search}`);
     
     function onChangeSearch(e) {
         e.preventDefault();
         setSearch(e.target.value);
-        // console.log(JSON.stringify(filterCards))
-        if(search !== ''){
-            props.setToCards(filterCards);
-        }
     }
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setCards(filterCards.cards));
+    }, [filterCards])
 
     return (
         <>
@@ -32,7 +34,6 @@ export default function Nav(props) {
                             <input type="text" onChange={onChangeSearch} value={search} />
                         </div>
                     </li>
-                    {/* <li><a href="#">Home</a></li> */}
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/mycard'>MyCard</Link></li>
                 </ul>
