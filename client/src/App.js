@@ -61,7 +61,7 @@ export default function App(props) {
   return (
     <Provider store={store}>
       <Router>
-        {/* <Nav setToCards={setToCards}></Nav> */}
+        <Nav></Nav>
         <div className="container">
           {/* <Home cards={cards} loading={loading}/>
           {cards.cards && <Detail card={cards.cards[0]} addToMyCard={addToMyCard}></Detail>}
