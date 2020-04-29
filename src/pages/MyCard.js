@@ -1,11 +1,16 @@
 import React from 'react';
-import {Card} from '../components';
+import { MyCardDetail } from '../components';
+import { useSelector } from 'react-redux';
 
 export default function MyCard(props) {
+    const myCards = useSelector(state => state.myCardsReducer);
+
     return (
         <>
-            <h1>My Card</h1>
-            {props.myCards && <Card cards={props.myCards}/>}
+            <h3>My Card</h3>
+            <hr/>
+            {myCards.myCards.length===0 && <h5>Empty Bag</h5>}
+            <MyCardDetail myCards={myCards}/>
         </>
     )
 }
