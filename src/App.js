@@ -34,10 +34,10 @@ export default function App(props) {
       path: '/',
       children: <Home/>
     },
-    // {
-    //   path: '/detail/:id',
-    //   children: <Detail addToMyCard={addToMyCard}/>
-    // },
+    {
+      path: '/detail/:id',
+      children: <Detail/>
+    },
     {
       path: '/mycard',
       children: <MyCard/>
