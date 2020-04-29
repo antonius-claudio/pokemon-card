@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import './Detail.css';
+import useFetch from '../hooks/useFetch';
+import { 
+    useParams
+  } from 'react-router-dom';
 
 export default function Detail(props) {
+    let {id} = useParams();
+    console.log('paraaam',id)
+    let [card] = useFetch(`https://api.pokemontcg.io/v1/cards/${id}`);
+    console.log('dataaaaa', JSON.stringify({...card.card}))
     let {
         name, 
         imageUrlHiRes, 
@@ -13,11 +21,11 @@ export default function Detail(props) {
         hp,
         attacks,
         text
-    } = props.card;
+    } = {...card.card};
 
     function onAddMyCard(e) {
         e.preventDefault();
-        props.addToMyCard(props.card);
+        props.addToMyCard(card);
     }
     return (
         <>

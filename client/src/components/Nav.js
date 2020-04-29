@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Nav.css';
 // import useInput from '../hooks/useInput';
 import useFetch from '../hooks/useFetch';
+import {Link} from 'react-router-dom';
 
 export default function Nav(props) {
 
@@ -23,7 +24,7 @@ export default function Nav(props) {
         <>
             <nav>
                 <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Pokemon Card</a>
+                <Link to='/' class="brand-logo">Pokemon Card</Link>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>
                         <div href="#" className="search">
@@ -31,8 +32,9 @@ export default function Nav(props) {
                             <input type="text" onChange={onChangeSearch} value={search} />
                         </div>
                     </li>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">MyCard</a></li>
+                    {/* <li><a href="#">Home</a></li> */}
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/mycard'>MyCard</Link></li>
                 </ul>
                 </div>
             </nav>
