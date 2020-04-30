@@ -7,7 +7,7 @@ export default function Card(props) {
     const cards = useSelector(state => state.cardsReducer);
     return (
         <>
-            {cards.cards.map((card) => (
+            {cards.cards.cards.map((card) => (
                 <Link key={card.id} to={`/detail/${card.id}`}>
                     <div className="col s12 m12 l6 thumbnail animated slideInUp">
                         <div className="contentCard">

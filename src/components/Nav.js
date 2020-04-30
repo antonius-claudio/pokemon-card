@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import './Nav.css';
-import useFetch from '../hooks/useFetch';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setCards } from '../store/actions/cardsActions';
+import { getCardsByName } from '../store/actions/cardsActions';
 
 
 export default function Nav(props) {
 
     let [search, setSearch] = useState('');
-    let [filterCards, filterSetCards , filterLoading, filterError] = useFetch(`https://api.pokemontcg.io/v1/cards?name=${search}`);
-    
+    // let redir = null;
     function onChangeSearch(e) {
         e.preventDefault();
         setSearch(e.target.value);
+        // redir = true;
     }
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(setCards(filterCards.cards));
-    }, [filterCards])
+        dispatch(getCardsByName(search));
+    }, [search])
 
     return (
         <>
+            {/* {redir && <Redirect to='/'/>} */}
             <nav>
                 <div class="nav-wrapper">
                 <Link to='/' class="brand-logo">Pokemon Card</Link>
