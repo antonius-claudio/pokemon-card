@@ -4,15 +4,15 @@ import { Link, Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getCardsByName } from '../store/actions/cardsActions';
 
-
 export default function Nav(props) {
 
     let [search, setSearch] = useState('');
-    // let redir = null;
+    let [redir, setRedir] = useState(false);
+
     function onChangeSearch(e) {
         e.preventDefault();
         setSearch(e.target.value);
-        // redir = true;
+        setRedir(true);
     }
 
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export default function Nav(props) {
 
     return (
         <>
-            {/* {redir && <Redirect to='/'/>} */}
+            {redir && <Redirect to='/'/>}
             <nav>
                 <div class="nav-wrapper">
                 <Link to='/' class="brand-logo">Pokemon Card</Link>

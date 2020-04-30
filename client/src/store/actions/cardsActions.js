@@ -25,6 +25,12 @@ export function getCards() {
 
 export function getCardsById(id) {
     return (dispatch) => {
+        dispatch ({
+            type: GET_CARDS_BY_ID,
+            payload: {
+                selected: {}
+            }
+        })
         fetch(`https://api.pokemontcg.io/v1/cards/${id}`)
             .then((result) => result.json())
             .then((result) => {
