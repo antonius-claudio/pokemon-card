@@ -1,29 +1,13 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import cardsReducer from './reducers/cards';
 import myCardsReducer from './reducers/myCards';
+import thunk from 'redux-thunk';
 
 const reducer = combineReducers({
     cardsReducer,
     myCardsReducer
 });
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 export default store;
-
-// import { createStore } from 'redux';
-
-// const initialState = {
-
-// }
-
-// export default (state = initialState, { type, payload }) => {
-//     switch (type) {
-
-//     case typeName:
-//         return { ...state, ...payload }
-
-//     default:
-//         return state
-//     }
-// }

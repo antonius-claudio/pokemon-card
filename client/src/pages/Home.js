@@ -1,23 +1,22 @@
 import React, { useEffect } from 'react';
-import useFetch from '../hooks/useFetch';
-import {Card} from '../components'
-import { useDispatch } from 'react-redux';
-import { setCards } from '../store/actions/cardsActions';
+import { Card } from '../components'
+import { useDispatch, useSelector } from 'react-redux';
+import { getCards } from '../store/actions/cardsActions';
 
 export default function Home(props) {
 
-    let [fetchCards, setFetchCards, loading, error] = useFetch(`https://api.pokemontcg.io/v1/cards`);
     const dispatch = useDispatch();
+    const cards = useSelector(state => state.cardsReducer)
 
     useEffect(() => {
-        dispatch(setCards(fetchCards.cards));
-    }, [fetchCards])
+        dispatch(getCards());
+    }, [])
 
     return (
         <>
             <div className="row">
-                {loading && <h5>wait a sec...</h5>}
-                {!loading && <Card/>}
+                {cards.cards.length === 0 && <h5>wait a sec...</h5>}
+                {cards.cards.length != 0 && <Card/>}
             </div>
         </>
     )

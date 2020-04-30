@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Detail.css';
 import { useParams } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
 import { useSelector, useDispatch } from 'react-redux';
 import { setMyCards } from '../store/actions/myCardsActions';
+import { getCardsById } from '../store/actions/cardsActions';
 import { Link } from 'react-router-dom';
 
 export default function Detail(props) {
     let {id} = useParams();
-    let [ card, setCard, loading, error ] = useFetch(`https://api.pokemontcg.io/v1/cards/${id}`);
     const myCards = useSelector(state => state.myCardsReducer);
+    const cards = useSelector(state => state.cardsReducer);
     const dispatch = useDispatch();
-    console.log('isi card', card)
-    console.log('isi mycards', myCards)
+    
+    useEffect(() => {
+        dispatch(getCardsById(id));
+    }, [])
+
     let {
         name, 
         imageUrlHiRes, 
@@ -24,21 +27,23 @@ export default function Detail(props) {
         hp,
         attacks,
         text
-    } = {...card.card};
+    } = {...cards.selected.selected};
 
     function onAddMyCard(e) {
         e.preventDefault();
-        if (!myCards.myCards.find(myCard => myCard.id === card.card.id)) {
-            dispatch(setMyCards(myCards.myCards.concat(card.card)))
+        if (!myCards.myCards.find(myCard => myCard.id === cards.selected.selected.id)) {
+            dispatch(setMyCards(myCards.myCards.concat(cards.selected.selected)))
         } else {
             console.log('Card already owned!')
+
         }
     }
     return (
         <>
+        {/* {JSON.stringify(cards.selected.selected)} */}
             <div className="contentDetail">
-                {loading && <h3>Wait a sec ...</h3>}
-                {card && 
+                {/* {loading && <h3>Wait a sec ...</h3>} */}
+                {cards.selected.selected && 
                     <>
                     <div className="titleDetail">
                         <h3>{name}</h3>
