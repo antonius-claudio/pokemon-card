@@ -30,6 +30,10 @@ export default function Detail(props) {
     } = {...cards.selected.selected};
     let message = null;
 
+    function check() {
+        return myCards.myCards.find(myCard => myCard.id === id) ? false : true;
+    }
+
     function onAddMyCard(e) {
         e.preventDefault();
         if (!myCards.myCards.find(myCard => myCard.id === cards.selected.selected.id)) {
@@ -152,14 +156,16 @@ export default function Detail(props) {
                                         Back
                                     </Link>
                                 </div>
-                                <div className="col s3 buttonAdd">
-                                    <a  class="waves-effect waves-light btn" onClick={onAddMyCard}>
-                                        <i class="material-icons right">
-                                            add
-                                        </i>
-                                        add MyCard
-                                    </a>
-                                </div>
+                                {check() && 
+                                    <div className="col s3 buttonAdd">
+                                        <a  class="waves-effect waves-light btn" onClick={onAddMyCard}>
+                                            <i class="material-icons right">
+                                                add
+                                            </i>
+                                            add MyCard
+                                        </a>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
