@@ -10,7 +10,8 @@ export default function MyCard(props) {
             <h3>My Card</h3>
             <hr/>
             {myCards.myCards.length===0 && <h5>Empty Bag</h5>}
-            <MyCardDetail myCards={myCards}/>
+            {/* <MyCardDetail myCards={myCards}/> */}
+            <MyCardDetail/>
         </>
     )
 }

@@ -28,14 +28,15 @@ export default function Detail(props) {
         attacks,
         text
     } = {...cards.selected.selected};
+    let message = null;
 
     function onAddMyCard(e) {
         e.preventDefault();
         if (!myCards.myCards.find(myCard => myCard.id === cards.selected.selected.id)) {
-            dispatch(setMyCards(myCards.myCards.concat(cards.selected.selected)))
+            dispatch(setMyCards(myCards.myCards.concat(cards.selected.selected)));
         } else {
             console.log('Card already owned!')
-
+            message = 'Card already owned!';
         }
     }
     return (
