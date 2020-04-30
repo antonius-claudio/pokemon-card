@@ -5,12 +5,12 @@ import { getCards } from '../store/actions/cardsActions';
 
 export default function Home(props) {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const cards = useSelector(state => state.cardsReducer)
 
-    useEffect(() => {
-        dispatch(getCards());
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getCards());
+    // }, [])
 
     return (
         <>
