@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Detail.css';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { setMyCards } from '../store/actions/myCardsActions';
 import { getCardsById } from '../store/actions/cardsActions';
 import { Link } from 'react-router-dom';
+// import 'materialize-css';
+// import { Toast } from 'react-materialize';
 
 export default function Detail(props) {
     let {id} = useParams();
@@ -28,7 +30,7 @@ export default function Detail(props) {
         attacks,
         text
     } = {...cards.selected.selected};
-    let message = null;
+    // let [ message, setMessage ] = useState(null);
 
     function check() {
         return myCards.myCards.find(myCard => myCard.id === id) ? false : true;
@@ -40,14 +42,14 @@ export default function Detail(props) {
             dispatch(setMyCards(myCards.myCards.concat(cards.selected.selected)));
         } else {
             console.log('Card already owned!')
-            message = 'Card already owned!';
+            // setMessage('Card already owned!');
         }
     }
     return (
         <>
         {/* {JSON.stringify(cards.selected.selected)} */}
             <div className="contentDetail">
-                {/* {loading && <h3>Wait a sec ...</h3>} */}
+            {/* {message && <Toast options={{html: message}}>{message}</Toast>} */}
                 {cards.selected.selected && 
                     <>
                     <div className="titleDetail">
