@@ -7,7 +7,7 @@ export default function MyCard(props) {
 
     return (
         <>
-            <h3>My Card</h3>
+            <h3 data-testid="contentMyCard">My Card</h3>
             <hr/>
             {myCards.myCards.length===0 && <h5>Empty Bag</h5>}
             {/* <MyCardDetail myCards={myCards}/> */}

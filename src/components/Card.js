@@ -8,7 +8,7 @@ export default function Card(props) {
     return (
         <>
             {cards.cards.cards.map((card) => (
-                <Link key={card.id} to={`/detail/${card.id}`}>
+                <Link key={card.id} to={`/detail/${card.id}`} data-testid="link-to-detail-page">
                     <div className="col s12 m12 l6 thumbnail animated slideInUp">
                         <div className="contentCard">
                             <div className="imageCard">

@@ -25,17 +25,17 @@ export default function Nav(props) {
         <>
             {redir && <Redirect to='/'/>}
             <nav>
-                <div class="nav-wrapper">
-                <Link to='/' class="brand-logo">Pokemon Card</Link>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <div className="nav-wrapper">
+                <Link to='/' className="brand-logo">Pokemon Card</Link>
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li>
                         <div href="#" className="search">
-                            <i class="material-icons left">search</i>
+                            <i className="material-icons left">search</i>
                             <input type="text" onChange={onChangeSearch} value={search} />
                         </div>
                     </li>
-                    <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/mycard'>MyCard</Link></li>
+                    <li><Link to='/' data-testid="home-page-btn">Home</Link></li>
+                    <li><Link to='/mycard'  data-testid="mycard-page-btn">MyCard</Link></li>
                 </ul>
                 </div>
             </nav>
