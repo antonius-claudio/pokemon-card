@@ -14,7 +14,7 @@ export default function Home(props) {
 
     return (
         <>
-            <div className="row">
+            <div data-testid="contentHome" className="row">
                 {cards.cards.length === 0 && <h5>wait a sec...</h5>}
                 {cards.cards.length != 0 && <Card/>}
             </div>

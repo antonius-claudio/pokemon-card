@@ -48,7 +48,7 @@ export default function Detail(props) {
     return (
         <>
         {/* {JSON.stringify(cards.selected.selected)} */}
-            <div className="contentDetail">
+            <div className="contentDetail" data-testid="contentDetail">
             {/* {message && <Toast options={{html: message}}>{message}</Toast>} */}
                 {cards.selected.selected && 
                     <>

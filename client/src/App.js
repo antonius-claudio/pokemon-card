@@ -6,35 +6,37 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-export default function App(props) {
-  
-  const routes = [
-    {
-      exact: true,
-      path: '/',
-      children: <Home/>
-    },
-    {
-      path: '/detail/:id',
-      children: <Detail/>
-    },
-    {
-      path: '/mycard',
-      children: <MyCard/>
-    }
-  ];
-  
+const routes = [
+  {
+    exact: true,
+    path: '/',
+    children: <Home/>
+  },
+  {
+    path: '/detail/:id',
+    children: <Detail/>
+  },
+  {
+    path: '/mycard',
+    children: <MyCard/>
+  }
+];
 
+export const AppRouter = () => (
+    <Switch>
+      {routes.map((route) => <Route key={route} {...route} />)}
+    </Switch>
+);
+
+export default function App(props) {
   return (
-    <Provider store={store}>
-      <Router>
+    <Router>
+      <Provider store={store}>
         <Nav></Nav>
         <div className="container">
-          <Switch>
-            {routes.map(route => <Route {...route} />)}
-          </Switch>
+          <AppRouter />
         </div>
-      </Router>
-    </Provider>
+      </Provider>
+    </Router>
   );
 }
