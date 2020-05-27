@@ -130,6 +130,12 @@ test('should display home content', () => {
 //   expect(content).toBeInTheDocument();
 // })
 
+test('should display detail content', () => {
+  const { getByTestId } = render(<App/>);
+  const content = getByTestId('contentDetail');
+  expect(content).toBeInTheDocument();
+})
+
 test('should render correct mycard page (nav button)', () => {
   const { getByTestId } = render(<App/>);
   const linkToMyCard = getByTestId('mycard-page-btn');
@@ -137,9 +143,3 @@ test('should render correct mycard page (nav button)', () => {
   const content = getByTestId('contentMyCard');
   expect(content).toBeInTheDocument();
 })
-
-// test('should display detail content', () => {
-//   const { getByTestId } = render(<Detail/>);
-//   const content = getByTestId('contentDetail');
-//   expect(content).toBeInTheDocument();
-// })
